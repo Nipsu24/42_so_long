@@ -6,13 +6,13 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:47:22 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/06 16:21:44 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/07 12:31:17 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_gnl_strjoin(char *s1, char *s2)
+static char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*ptr;
 	int		i;
@@ -80,7 +80,7 @@ int	main(void)
 	int		i;
 
 	i = 0;
-	fd = open("./maps/border.ber", O_RDONLY);
+	fd = open("./maps/rectangular.ber", O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error opening file");
