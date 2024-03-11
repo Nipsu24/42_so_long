@@ -18,10 +18,10 @@ int	map_is_ok(char *map)
 		return (0);
 	if (!is_rectangle(map))
 		return (0);
-	// if (!valid_char(map))
-	// 	return (0);
-	// if (!p_e_c_count_ok(map))
-	// 	return (0);
+	if (!valid_char(map))
+		return (0);
+	if (!p_e_c_count_ok(map))
+		return (0);
 	return (1);
 }
 
@@ -73,15 +73,13 @@ int	p_e_c_count_ok(char *map)
  empty spaces still to be handled*/
 int	is_rectangle(char *map)
 {
-	int	i;
-	int	j;
 	int	c_count_rev;
 	int	new_count;
+	int	i;
 
-	i = 0;
-	j = 0;
 	c_count_rev = 0;
 	new_count = 0;
+	i = 0;
 	while (map[c_count_rev] != '\n')
 		c_count_rev++;
 	i = c_count_rev + 1;
@@ -99,13 +97,3 @@ int	is_rectangle(char *map)
 	}
 	return (1);
 }
-
-// int	main(void)
-// {
-// 	char *map;
-
-// 	map = "1234\n5678\n9101112";
-// 	printf("nb of char in line:%d", is_rectangle(map));
-// 	printf("nb of char in line:%d", is_rectangle_2(map));
-// 	return (0);
-// }

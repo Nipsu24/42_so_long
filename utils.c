@@ -73,24 +73,13 @@ char	*ft_free(char **str)
 	return (NULL);
 }
 
-int	main(void)
+int	ft_free_map(void **str)
 {
-	int		fd;
-	char	*map;
-	int		i;
-
-	i = 0;
-	fd = open("./maps/rectangular.ber", O_RDONLY);
-	if (fd < 0)
+	if (*str)
 	{
-		perror("Error opening file");
-		return (1);
+		free(*str);
+		*str = NULL;
 	}
-	map = ft_read_map(fd);
-	if (!map_is_ok(map))
-		ft_putstr_fd("Error\n", 1);//return ()
-	printf("%s", map);
-	free(map);
-	close(fd);
 	return (0);
 }
+
