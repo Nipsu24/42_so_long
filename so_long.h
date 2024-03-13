@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/07 12:29:55 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:52:06 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ char	*ft_free(char **str);
 int		map_is_ok(char *map);
 int	    p_e_c_count_ok(char *map);
 int	    valid_char(char *map);
-int	    is_rectangle(char *map);
+int		is_rectangle(char *map_2d[]);
 int		ft_free_map(void **str);
+int		borders_top_down(char *map_2d[]);
+int		borders_left_right(char *map_2d[]);
+int		ft_array_size(char **array);
+int		free_arr_border(char **av);
+int		free_arr_rectangle(char	**av);
+int		free_arr_char(char **av);
+int		free_arr_c_count(char **av);
 
 #endif

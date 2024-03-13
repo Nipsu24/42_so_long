@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/07 16:54:02 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/13 16:53:26 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 int	map_is_ok(char *map)
 {
+	char	**map_2d;
+
 	if (!map)
 		return (0);
-	if (!is_rectangle(map))
-		return (0);
+	map_2d = ft_split(map, '\n');
+	if (map_2d == NULL)
+		return (-1);
+	if (!is_rectangle(map_2d))
+		return (free_arr_rectangle(map_2d));
+	if (!borders_top_down(map_2d))
+		return (free_arr_border(map_2d));
+	if (!borders_left_right(map_2d))
+		return (free_arr_border(map_2d));
 	if (!valid_char(map))
-		return (0);
+		return (free_arr_char(map_2d));
 	if (!p_e_c_count_ok(map))
-		return (0);
+		return (free_arr_c_count(map_2d));
 	return (1);
 }
 
@@ -69,31 +78,103 @@ int	p_e_c_count_ok(char *map)
 		return (1);
 }
 
-/*checks if all lines of the map have same amount of characters.
- empty spaces still to be handled*/
-int	is_rectangle(char *map)
+/*checks if all lines of the map have same amount of characters.*/
+int	is_rectangle(char *map_2d[])
 {
-	int	c_count_rev;
-	int	new_count;
 	int	i;
+	int	j;
 
-	c_count_rev = 0;
-	new_count = 0;
 	i = 0;
-	while (map[c_count_rev] != '\n')
-		c_count_rev++;
-	i = c_count_rev + 1;
-	while (map[i])
+	j = 1;
+	while (map_2d[j])
 	{
-		new_count = 0;
-		while (map[i] && map[i] != '\n' && map[c_count_rev + 1] != ' ')
-		{
-			i++;
-			new_count++;
-		}
-		if (c_count_rev != new_count)
+		if (ft_strlen(map_2d[i]) != ft_strlen(map_2d[j]))
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
+/*checks if there are any other chars from '1s' in 1st & last row.
+  'Last - 1', in order to not include array with '/NULL-terminator'*/
+int	borders_top_down(char *map_2d[])
+{
+	int	i;
+	int	j;
+	int	last;
+
+	i = 0;
+	j = 0;
+	last = ft_array_size(map_2d);
+	while (map_2d[0][i])
+	{
+		if (map_2d[0][i] != '1')
 			return (0);
 		i++;
 	}
+	while (map_2d[last - 1][j])
+	{
+		if (map_2d[last - 1][j] != '1')
+			return (0);
+		j++;
+	}
 	return (1);
+}
+
+/*checks if there are any other chars from '1s' in 1st & last 
+  index of string. "Last -1" due to array indexing*/
+int	borders_left_right(char *map_2d[])
+{
+	int	i;
+	int	j;
+	int	last;
+
+	i = 0;
+	j = 0;
+	last = ft_array_size(map_2d);
+	while (last != i)
+	{
+		if (map_2d[i][0] != '1')
+			return (0);
+		i++;
+	}
+	while (last != j)
+	{
+		if (map_2d[j][ft_strlen(map_2d[j]) - 1] != '1')
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
+int	ft_array_size(char **array)
+{
+	int	i;
+
+	i = 0;
+	if(!array)
+		return (0);
+	while (array[i])
+		i++;
+	return (i);
+}
+
+int	main(void)
+{
+	int		fd;
+	char	*map;
+
+	fd = open("./maps/rectangular.ber", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	map = ft_read_map(fd);
+	printf("%s", map);
+	if (!map_is_ok(map))
+		return (0);
+	free(map);
+	close(fd);
+	return (0);
 }
