@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2023/11/22 11:05:50 by mmeier           ###   ########.fr        #
+#    Updated: 2024/03/14 11:19:07 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,15 @@ FILES = ft_calloc.c \
 		ft_striteri.c \
 		ft_strmapi.c \
 		ft_strtrim.c \
-		ft_itoa.c
+		ft_itoa.c \
+		ft_hexconvert_lower.c \
+		ft_hexconvert_upper.c \
+		ft_printf.c \
+		ft_putchar_count.c \
+		ft_putnbr_count.c \
+		ft_putptr.c \
+		ft_putstr_count.c \
+		ft_unsigned_int.c \
 
 OBJ = $(FILES:.c=.o)
 

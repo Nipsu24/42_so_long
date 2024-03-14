@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/13 16:53:26 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:10:31 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	map_is_ok(char *map)
 	if (!map)
 		return (0);
 	map_2d = ft_split(map, '\n');
-	if (map_2d == NULL)
+	if (!map_2d)
 		return (-1);
 	if (!is_rectangle(map_2d))
 		return (free_arr_rectangle(map_2d));
@@ -31,15 +31,21 @@ int	map_is_ok(char *map)
 		return (free_arr_char(map_2d));
 	if (!p_e_c_count_ok(map))
 		return (free_arr_c_count(map_2d));
+	// if (!valid_path(map_2d))
+	// 	return (free_arr_c_count(map_2d));
 	return (1);
 }
 
-/*checks whether map consists only of valid characters*/
+/*Checks whether map consists only of valid characters. Takes also care
+  of empty lines with j-while-loop*/
+
 int	valid_char(char *map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (map[i])
 	{
 		if (map[i] != '0' && map[i] != '1' && map[i] != 'C'
@@ -47,10 +53,17 @@ int	valid_char(char *map)
 			return (0);
 		i++;
 	}
+	while (map[j])
+	{
+		if (map[0] == '\n' || (map[j] == '\n' && map[j + 1] == '\n')
+			|| map[ft_strlen(map) - 1] == '\n')
+			return (0);
+		j++;
+	}
 	return (1);
 }
 
-/*counts occurence of players, exits and collectibles on the map*/
+/*Counts occurence of players, exits and collectibles on the map*/
 int	p_e_c_count_ok(char *map)
 {
 	int	i;
@@ -78,7 +91,7 @@ int	p_e_c_count_ok(char *map)
 		return (1);
 }
 
-/*checks if all lines of the map have same amount of characters.*/
+/*Checks if all lines of the map have same amount of characters.*/
 int	is_rectangle(char *map_2d[])
 {
 	int	i;
@@ -95,7 +108,7 @@ int	is_rectangle(char *map_2d[])
 	return (1);
 }
 
-/*checks if there are any other chars from '1s' in 1st & last row.
+/*Checks if there are any other chars from '1s' in 1st & last row.
   'Last - 1', in order to not include array with '/NULL-terminator'*/
 int	borders_top_down(char *map_2d[])
 {
@@ -121,7 +134,7 @@ int	borders_top_down(char *map_2d[])
 	return (1);
 }
 
-/*checks if there are any other chars from '1s' in 1st & last 
+/*Checks if there are any other chars from '1s' in 1st & last 
   index of string. "Last -1" due to array indexing*/
 int	borders_left_right(char *map_2d[])
 {
@@ -152,29 +165,90 @@ int	ft_array_size(char **array)
 	int	i;
 
 	i = 0;
-	if(!array)
+	if (!array)
 		return (0);
 	while (array[i])
 		i++;
 	return (i);
 }
 
-int	main(void)
+// int	valid_path(char *map_2d[])
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while(map_2d[i])
+// 	{
+// 		if 
+// 		return (0);
+// 	}
+
+// 	return (1);
+// }
+
+/*Checks if file is in correct .ber format. "str + len_str - len_ext" moves 
+  str until file extension and compares following characters with chars of 
+  string "extension"*/
+int	file_format(char *str)
+{
+	char	*extension = ".ber";
+	int		len_str;
+	int		len_ext;
+
+	len_str = ft_strlen(str);
+	len_ext = ft_strlen(extension);
+	if (len_str < len_ext
+		|| (ft_strncmp(str + len_str - len_ext, extension, len_str) != 0))
+		return (wrong_format_error());
+	else
+		return (1);
+}
+
+int	main(int ac, char *av[])
 {
 	int		fd;
 	char	*map;
 
-	fd = open("./maps/rectangular.ber", O_RDONLY);
+	if (ac != 2)
+		return (0);
+	if (!file_format(av[1]))
+		return (0);
+	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error opening file");
+		ft_printf("Error opening file");
 		return (1);
 	}
 	map = ft_read_map(fd);
-	printf("%s", map);
+	ft_printf("%s\n", map);
 	if (!map_is_ok(map))
 		return (0);
 	free(map);
 	close(fd);
 	return (0);
 }
+
+
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*map;
+
+// 	if (!file_format(av[1]))
+// 		return (0);
+// 	fd = open("./maps/rectangular.ber", O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		ft_printf("Error opening file");
+// 		return (1);
+// 	}
+// 	map = ft_read_map(fd);
+// 	ft_printf("%s\n", map);
+// 	if (!map_is_ok(map))
+// 		return (0);
+// 	free(map);
+// 	close(fd);
+// 	return (0);
+// }
