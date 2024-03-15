@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/14 16:10:31 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:54:11 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	map_is_ok(char *map)
 		return (free_arr_char(map_2d));
 	if (!p_e_c_count_ok(map))
 		return (free_arr_c_count(map_2d));
-	// if (!valid_path(map_2d))
-	// 	return (free_arr_c_count(map_2d));
-	return (1);
+	if (!valid_path(map_2d))
+		return (free_arr_c_count(map_2d));
+	return (free_arr(map_2d));
 }
 
 /*Checks whether map consists only of valid characters. Takes also care
@@ -172,21 +172,17 @@ int	ft_array_size(char **array)
 	return (i);
 }
 
-// int	valid_path(char *map_2d[])
-// {
-// 	int	i;
-// 	int	j;
+int	ft_arr_strlen(char **array)
+{
+	int	j;
 
-// 	i = 0;
-// 	j = 0;
-// 	while(map_2d[i])
-// 	{
-// 		if 
-// 		return (0);
-// 	}
-
-// 	return (1);
-// }
+	j = 0;
+	if (!array)
+		return (0);
+	while (array[0][j])
+		j++;
+	return (j);
+}
 
 /*Checks if file is in correct .ber format. "str + len_str - len_ext" moves 
   str until file extension and compares following characters with chars of 
@@ -217,10 +213,7 @@ int	main(int ac, char *av[])
 		return (0);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("Error opening file");
-		return (1);
-	}
+		return (error_open_file());
 	map = ft_read_map(fd);
 	ft_printf("%s\n", map);
 	if (!map_is_ok(map))
@@ -229,26 +222,3 @@ int	main(int ac, char *av[])
 	close(fd);
 	return (0);
 }
-
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*map;
-
-// 	if (!file_format(av[1]))
-// 		return (0);
-// 	fd = open("./maps/rectangular.ber", O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		ft_printf("Error opening file");
-// 		return (1);
-// 	}
-// 	map = ft_read_map(fd);
-// 	ft_printf("%s\n", map);
-// 	if (!map_is_ok(map))
-// 		return (0);
-// 	free(map);
-// 	close(fd);
-// 	return (0);
-// }
