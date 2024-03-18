@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/18 12:07:12 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:26:16 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	file_format(char *str)
 
 	len_str = ft_strlen(str);
 	len_ext = ft_strlen(extension);
-	if (len_str < len_ext
+	if (len_str <= len_ext
 		|| (ft_strncmp(str + len_str - len_ext, extension, len_str) != 0))
 		return (wrong_format_error());
 	else

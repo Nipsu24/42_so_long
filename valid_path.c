@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 12:10:30 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:31:34 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	valid_path(char **map_2d)
 	j = 0;
 	player_pos(map_2d, &p_pos_x, &p_pos_y);
 	fill_map(&map_2d, p_pos_x, p_pos_y);
+	while (map_2d[i])
+	{
+		ft_printf("%s\n", map_2d[i]);
+		i++;
+	}
+	i = 0;
 	while (map_2d[i])
 	{
 		j = 0;
@@ -70,11 +76,12 @@ void	player_pos(char **map, int *x, int *y)
   In case '1' or 'X' are detected, function quits.*/
 void	fill_map(char ***map, int x, int y)
 {
-	if ((*map)[x][y] == '1' || (*map)[x][y] == 'X')
+	if ((*map)[y][x] == '1' || (*map)[y][x] == 'X')
 		return ;
-	(*map)[x][y] = 'X';
+	(*map)[y][x] = 'X';
 	fill_map(map, x + 1, y);
 	fill_map(map, x - 1, y);
 	fill_map(map, x, y + 1);
 	fill_map(map, x, y - 1);
+	return ;
 }
