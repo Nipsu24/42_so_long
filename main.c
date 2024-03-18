@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/18 14:07:11 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:11:41 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	main(int ac, char *av[])
 		close(fd);
 		return (0);
 	}
+	free(map);
+	close(fd);
 	return (0);
 }
 
