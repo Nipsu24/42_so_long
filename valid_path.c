@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 13:31:34 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:44:54 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ int	valid_path(char **map_2d)
 	j = 0;
 	player_pos(map_2d, &p_pos_x, &p_pos_y);
 	fill_map(&map_2d, p_pos_x, p_pos_y);
-	while (map_2d[i])
-	{
-		ft_printf("%s\n", map_2d[i]);
-		i++;
-	}
-	i = 0;
 	while (map_2d[i])
 	{
 		j = 0;

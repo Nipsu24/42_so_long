@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/18 13:26:16 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:52:19 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	map_is_ok(char *map)
 	char	**map_2d;
 
 	if (!map)
-		return (0);
+		error_empty_map();
 	map_2d = ft_split(map, '\n');
 	if (!map_2d)
 		return (-1);
@@ -85,9 +85,11 @@ int	main(int ac, char *av[])
 	map = ft_read_map(fd);
 	ft_printf("%s\n", map);
 	if (!map_is_ok(map))
+	{
+		free(map);
+		close(fd);
 		return (0);
-	free(map);
-	close(fd);
+	}
 	return (0);
 }
 

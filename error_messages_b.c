@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 12:08:42 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:51:53 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ int	free_arr(char **av)
 	free(av);
 	av = NULL;
 	return (1);
+}
+
+int	error_empty_map(void)
+{
+	ft_printf("Error. Map is empty :(\n");
+	return (0);
 }

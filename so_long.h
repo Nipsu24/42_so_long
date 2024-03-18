@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 12:15:16 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:50:25 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int		free_arr(char **av);
 void	player_pos(char **map, int *x, int *y);
 void	fill_map(char ***map, int x, int y);
 int		free_arr_valid_path(char **av);
+int		error_empty_map(void);
 
 #endif
