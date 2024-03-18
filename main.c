@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/18 13:52:19 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:07:11 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@
   string "extension"*/
 int	file_format(char *str)
 {
-	char	*extension = ".ber";
+	char	*extension;
 	int		len_str;
 	int		len_ext;
 
+	extension = ".ber";
 	len_str = ft_strlen(str);
 	len_ext = ft_strlen(extension);
 	if (len_str <= len_ext
