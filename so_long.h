@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/15 16:26:18 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:15:16 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include "./libft/libft.h"
-# include "mlx/mlx.h"
+//# include "mlx/mlx.h"
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
@@ -27,9 +27,9 @@
 
 typedef struct s_position
 {
-    int x;
-    int y;
-}   t_pos;
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_map
 {
@@ -41,7 +41,7 @@ typedef struct s_map
 char	*ft_read_map(int fd);
 char	*ft_free(char **str);
 int		map_is_ok(char *map);
-int	    p_e_c_count_ok(char *map);
+int		p_e_c_count_ok(char *map);
 int		valid_char(char *map);
 int		is_rectangle(char *map_2d[]);
 int		ft_free_map(void **str);
@@ -58,8 +58,7 @@ int		wrong_format_error(void);
 int		error_open_file(void);
 int		free_arr(char **av);
 void	player_pos(char **map, int *x, int *y);
-int		ft_arr_strlen(char **array);
-char	**fill_map(char **map, int x, int y, int len_x, int len_y);
+void	fill_map(char ***map, int x, int y);
 int		free_arr_valid_path(char **av);
 
 #endif
