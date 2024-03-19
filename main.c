@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/18 14:11:41 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/19 10:32:06 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 /*Checks if file is in correct .ber format. "str + len_str - len_ext" moves 
   str until file extension and compares following characters with chars of 
-  string "extension"*/
+  string "extension". If file is only named ".ber", error is returned, too.*/
 int	file_format(char *str)
 {
 	char	*extension;
