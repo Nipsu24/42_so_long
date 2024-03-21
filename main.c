@@ -146,7 +146,6 @@ void	draw_map(t_game *game, t_image *image)
 
 }
 
-
 int	main(int ac, char *av[])
 {
 	int				fd;
