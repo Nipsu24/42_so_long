@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:47:22 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 12:00:14 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/21 11:51:17 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_free_map(void **str)
 	return (0);
 }
 
-int	ft_array_size(char **array)
+int	ft_array_height(char **array)
 {
 	int	i;
 
@@ -91,6 +91,17 @@ int	ft_array_size(char **array)
 	if (!array)
 		return (0);
 	while (array[i])
+		i++;
+	return (i);
+}
+int	ft_array_width(char **array)
+{
+	int	i;
+
+	i = 0;
+	if (!array)
+		return (0);
+	while (array[0][i])
 		i++;
 	return (i);
 }

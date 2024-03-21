@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 13:50:25 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/21 17:18:17 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <limits.h>
-# include "./libft/libft.h"
-//# include "mlx/mlx.h"
 # include <fcntl.h>
+# include "./libft/libft.h"
+# include "./mlx/include/MLX42/MLX42.h"
+# define WIDTH 256
+# define HEIGHT 256
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -31,12 +33,36 @@ typedef struct s_position
 	int	y;
 }	t_pos;
 
-typedef struct s_map
+
+typedef struct s_texture
 {
-	int		player;
-	int		exit;
-	int		collectibles;
-}	t_map;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*floor;
+	mlx_texture_t	*collectible;
+	mlx_texture_t	*player;
+	mlx_texture_t	*exit_shut;
+	mlx_texture_t	*exit_open;
+}	t_texture;
+
+typedef struct s_image
+{
+	mlx_image_t	*wall;
+	mlx_image_t	*floor;
+	mlx_image_t	*collectible;
+	mlx_image_t	*player;
+	mlx_image_t	*exit_shut;
+	mlx_image_t	*exit_open;
+}	t_image;
+
+typedef struct s_game
+{
+	struct s_texture	*texture;
+	struct s_image		*image;
+	mlx_t				*mlx_ptr;
+	char				**map;
+	int					map_width;
+	int					map_height;
+}	t_game;
 
 char	*ft_read_map(int fd);
 char	*ft_free(char **str);
@@ -47,7 +73,7 @@ int		is_rectangle(char *map_2d[]);
 int		ft_free_map(void **str);
 int		borders_top_down(char *map_2d[]);
 int		borders_left_right(char *map_2d[]);
-int		ft_array_size(char **array);
+int		ft_array_height(char **array);
 int		free_arr_border(char **av);
 int		free_arr_rectangle(char	**av);
 int		free_arr_char(char **av);
@@ -61,5 +87,12 @@ void	player_pos(char **map, int *x, int *y);
 void	fill_map(char ***map, int x, int y);
 int		free_arr_valid_path(char **av);
 int		error_empty_map(void);
+int		ft_array_width(char **array);
+void	size_map(t_game *game, char **map);
+int		init_game(t_game *game);
+void	get_textures(t_game *game);
+void	get_images(t_game *game);
+void	draw_floor(t_game *game, t_image *image);
+void	draw_map(t_game *game, t_image *image);
 
 #endif

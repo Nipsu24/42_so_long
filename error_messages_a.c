@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/18 13:43:30 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/21 11:47:15 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	free_arr_rectangle(char	**av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error. Map is not a rectangle :(\n");
+	ft_printf("Error\n. Map is not a rectangle :(\n");
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int	free_arr_border(char **av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error. No valid borders :(\n");
+	ft_printf("Error\n. No valid borders :(\n");
 	return (0);
 }
 
@@ -65,7 +65,7 @@ int	free_arr_char(char **av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error. Map contains invalid characters :(\n");
+	ft_printf("Error\n. Map contains invalid characters :(\n");
 	return (0);
 }
 
@@ -84,7 +84,7 @@ int	free_arr_c_count(char **av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error. Map does not contain correct amount of characters :(\n");
+	ft_printf("Error\n. Map does not contain correct amount of characters :(\n");
 	return (0);
 }
 
@@ -103,6 +103,6 @@ int	free_arr_valid_path(char **av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error. No valid path :(\n");
+	ft_printf("Error\n. No valid path :(\n");
 	return (0);
 }

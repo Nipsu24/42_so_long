@@ -6,27 +6,11 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/19 10:32:06 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/21 17:14:27 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int main(void)
-// {
-//     void    *mlx_ptr;
-//     void    *win_ptr;
-
-//     mlx_ptr = mlx_init();
-//     if (!mlx_ptr)
-//         return(ft_free_map(&mlx_ptr));
-//     win_ptr = mlx_new_window(mlx_ptr, 600, 400, "test!");
-//     if (!win_ptr)
-//         return(ft_free_map(&mlx_ptr));
-//     mlx_destroy_window(mlx_ptr, win_ptr);
-//     mlx_destroy_display(mlx_ptr);
-//     return (ft_free_map(&mlx_ptr));
-// }
 
 /*Checks if file is in correct .ber format. "str + len_str - len_ext" moves 
   str until file extension and compares following characters with chars of 
@@ -71,10 +55,103 @@ int	map_is_ok(char *map)
 	return (free_arr(map_2d));
 }
 
+void	size_map(t_game *game, char **map)
+{
+	game->map_height = ft_array_height(map);
+	game->map_width = ft_array_width(map);
+}
+
+int	init_game(t_game *game)
+{
+	game->mlx_ptr = mlx_init(game->map_width, game->map_height, "so_long", false);
+	if (!(game->mlx_ptr))
+		error_open_file();
+	get_textures(game);
+	get_images(game);
+	draw_map(game, game->image);	
+}
+
+void	get_textures(t_game *game)
+{
+	game->texture->wall = mlx_load_png("./assets/Wall.png");
+	game->texture->floor = mlx_load_png("./assets/Gras.png");
+	game->texture->collectible = mlx_load_png("./assets/collectible.png");
+	game->texture->player = mlx_load_png("./assets/Lizard.png");
+	game->texture->exit_shut = mlx_load_png("./assets/Goal.png");
+}
+
+void	get_images(t_game *game)
+{
+	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->wall);
+	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->floor);
+	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->collectible);
+	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->player);
+	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->exit_shut);
+	mlx_delete_texture(game->texture->wall);
+	mlx_delete_texture(game->texture->floor);
+	mlx_delete_texture(game->texture->collectible);
+	mlx_delete_texture(game->texture->player);
+	mlx_delete_texture(game->texture->exit_shut);
+}
+
+void	draw_floor(t_game *game, t_image *image)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	{
+		while(game->map[y])
+		{
+			x = 0;
+			while(game->map[y][x])
+			{
+				game->map[y][x] == mlx_image_to_window(game->mlx_ptr, image->floor, x * 32, y * 32);
+				if (game->map[y][x] == '1')
+					game->map[y][x] == mlx_image_to_window(game->mlx_ptr, image->wall, x * 32, y * 32);
+				if (game->map[y][x] == 'E')
+					game->map[y][x] == mlx_image_to_window(game->mlx_ptr, image->exit_shut, x * 32, y * 32);
+				x++;
+			}
+			y++;
+		}
+	}
+	
+}
+
+void	draw_map(t_game *game, t_image *image)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	{
+		draw_floor(game, image);
+		while(game->map[y])
+		{
+			x = 0;
+			while(game->map[y][x])
+			{
+				if (game->map[y][x] == 'P')
+					game->map[y][x] == mlx_image_to_window(game->mlx_ptr, image->player, x * 32, y * 32);
+				if (game->map[y][x] == 'C')
+					game->map[y][x] == mlx_image_to_window(game->mlx_ptr, image->collectible, x * 32, y * 32);
+				x++;
+			}
+			y++;
+		}
+	}
+
+}
+
+
 int	main(int ac, char *av[])
 {
-	int		fd;
-	char	*map;
+	int				fd;
+	char			*map;
+	static t_game	game;
 
 	if (ac != 2)
 		return (0);
@@ -84,7 +161,7 @@ int	main(int ac, char *av[])
 	if (fd < 0)
 		return (error_open_file());
 	map = ft_read_map(fd);
-	ft_printf("%s\n", map);
+	//ft_printf("%s\n", map);
 	if (!map_is_ok(map))
 	{
 		free(map);
@@ -93,25 +170,13 @@ int	main(int ac, char *av[])
 	}
 	free(map);
 	close(fd);
+	game.map = ft_read_map(fd);
+	size_map(&game, game.map);
+	init_game(&game);
+	if (mlx_image_to_window(mlx_ptr, img, 0, 0) < 0)
+		error();
+	mlx_loop(game.mlx_ptr);
+	mlx_delete_image(mlx_ptr, img);
+	mlx_terminate(mlx_ptr);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*map;
-
-// 	fd = open("./maps/rectangular.ber", O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		perror("Error opening file");
-// 		return (1);
-// 	}
-// 	map = ft_read_map(fd);
-// 	if (!map_is_ok(map))
-// 		ft_putstr_fd("Error\n", 1);//return ()
-// 	printf("%s", map);
-// 	free(map);
-// 	close(fd);
-// 	return (0);
-// }

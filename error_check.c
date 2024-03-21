@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/19 11:36:18 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/21 12:33:08 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	borders_top_down(char *map_2d[])
 
 	i = 0;
 	j = 0;
-	last = ft_array_size(map_2d);
+	last = ft_array_height(map_2d);
 	while (map_2d[0][i])
 	{
 		if (map_2d[0][i] != '1')
@@ -65,7 +65,7 @@ int	borders_left_right(char *map_2d[])
 
 	i = 0;
 	j = 0;
-	last = ft_array_size(map_2d);
+	last = ft_array_height(map_2d);
 	while (last != i)
 	{
 		if (map_2d[i][0] != '1')
