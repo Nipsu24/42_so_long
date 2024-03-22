@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:47:22 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/21 11:51:17 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/22 11:58:44 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*ft_read_map(int fd)
 	char	*str;
 
 	count = 1;
+	str = NULL;
 	while (count > 0)
 	{
 		count = read (fd, buf, BUFFER_SIZE);

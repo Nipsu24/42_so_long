@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/03/19 11:35:52 by mmeier           ###   ########.fr        #
+#    Updated: 2024/03/22 10:39:55 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJ_FILES) $(LIBFT)
 	@echo "\033[32m$(NAME) has been built successfully!\033[0m"
 
 fsanitize: 
-	$(CC) -o $(NAME) $(FILES) -L$(LIBFT) -lft -g -fsanitize=address -static-libsan 
+	$(CC) -o $(NAME) $(FILES) -L$(LIBFT) $(LINK_DIR) $(LIBS) -lft -g -fsanitize=address -static-libsan 
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
 	$(CC) $(FLAGS) -c $< -o $@

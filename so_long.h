@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/21 17:18:17 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/22 10:54:35 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./mlx/include/MLX42/MLX42.h"
-# define WIDTH 256
-# define HEIGHT 256
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -92,7 +90,8 @@ void	size_map(t_game *game, char **map);
 int		init_game(t_game *game);
 void	get_textures(t_game *game);
 void	get_images(t_game *game);
-void	draw_floor(t_game *game, t_image *image);
-void	draw_map(t_game *game, t_image *image);
+void	build_floor(t_game *game, t_image *image);
+void	build_map(t_game *game, t_image *image);
+void	delete_images(t_game *game);
 
 #endif
