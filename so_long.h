@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/22 10:54:35 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/22 15:00:45 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,31 @@ typedef struct s_position
 	int	y;
 }	t_pos;
 
-
 typedef struct s_texture
 {
 	mlx_texture_t	*wall;
 	mlx_texture_t	*floor;
-	mlx_texture_t	*collectible;
+	mlx_texture_t	*coll;
 	mlx_texture_t	*player;
-	mlx_texture_t	*exit_shut;
-	mlx_texture_t	*exit_open;
+	mlx_texture_t	*exit_s;
+	mlx_texture_t	*exit_o;
 }	t_texture;
 
 typedef struct s_image
 {
 	mlx_image_t	*wall;
 	mlx_image_t	*floor;
-	mlx_image_t	*collectible;
+	mlx_image_t	*coll;
 	mlx_image_t	*player;
-	mlx_image_t	*exit_shut;
-	mlx_image_t	*exit_open;
+	mlx_image_t	*exit_s;
+	mlx_image_t	*exit_o;
 }	t_image;
 
 typedef struct s_game
 {
-	struct s_texture	*texture;
-	struct s_image		*image;
-	mlx_t				*mlx_ptr;
+	struct s_texture	*textr;
+	struct s_image		*img;
+	mlx_t				*mlx;
 	char				**map;
 	int					map_width;
 	int					map_height;
@@ -89,7 +88,7 @@ int		ft_array_width(char **array);
 void	size_map(t_game *game, char **map);
 int		init_game(t_game *game);
 void	get_textures(t_game *game);
-void	get_images(t_game *game);
+void	get_images(t_game *game, t_texture *texture);
 void	build_floor(t_game *game, t_image *image);
 void	build_map(t_game *game, t_image *image);
 void	delete_images(t_game *game);

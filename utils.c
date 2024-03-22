@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:47:22 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/22 11:58:44 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/22 15:02:04 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	ft_array_height(char **array)
 		i++;
 	return (i);
 }
+
 int	ft_array_width(char **array)
 {
 	int	i;

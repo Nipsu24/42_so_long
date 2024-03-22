@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/03/22 10:39:55 by mmeier           ###   ########.fr        #
+#    Updated: 2024/03/22 14:32:45 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ FILES = error_check.c \
 		error_messages_a.c \
 		error_messages_b.c \
 		valid_path.c \
+		images.c \
 		main.c \
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))

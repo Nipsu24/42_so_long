@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/22 14:32:02 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/22 14:59:48 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 void	get_textures(t_game *game)
 {
-	game->texture = ft_calloc(1, sizeof(t_texture));
-	game->texture->wall = mlx_load_png("./assets/png/Wall.png");
-	game->texture->floor = mlx_load_png("./assets/png/Gras.png");
-	game->texture->collectible = mlx_load_png("./assets/png/collectible.png");
-	game->texture->player = mlx_load_png("./assets/png/Lizard.png");
-	game->texture->exit_shut = mlx_load_png("./assets/png/Goal.png");
+	game->textr = ft_calloc(1, sizeof(t_texture));
+	game->textr->wall = mlx_load_png("./assets/png/Wall.png");
+	game->textr->floor = mlx_load_png("./assets/png/Gras.png");
+	game->textr->coll = mlx_load_png("./assets/png/collectible.png");
+	game->textr->player = mlx_load_png("./assets/png/Lizard.png");
+	game->textr->exit_s = mlx_load_png("./assets/png/Goal.png");
 }
 
-void	get_images(t_game *game)
+void	get_images(t_game *game, t_texture *textr)
 {
-	game->image = ft_calloc(1, sizeof(t_image));
-	game->image->wall = mlx_texture_to_image(game->mlx_ptr, game->texture->wall);
-	game->image->floor = mlx_texture_to_image(game->mlx_ptr, game->texture->floor);
-	game->image->collectible = mlx_texture_to_image(game->mlx_ptr, game->texture->collectible);
-	game->image->player = mlx_texture_to_image(game->mlx_ptr, game->texture->player);
-	game->image->exit_shut = mlx_texture_to_image(game->mlx_ptr, game->texture->exit_shut);
-	mlx_delete_texture(game->texture->wall);
-	mlx_delete_texture(game->texture->floor);
-	mlx_delete_texture(game->texture->collectible);
-	mlx_delete_texture(game->texture->player);
-	mlx_delete_texture(game->texture->exit_shut);
+	game->img = ft_calloc(1, sizeof(t_image));
+	game->img->wall = mlx_texture_to_image(game->mlx, textr->wall);
+	game->img->floor = mlx_texture_to_image(game->mlx, textr->floor);
+	game->img->coll = mlx_texture_to_image(game->mlx, textr->coll);
+	game->img->player = mlx_texture_to_image(game->mlx, textr->player);
+	game->img->exit_s = mlx_texture_to_image(game->mlx, textr->exit_s);
+	mlx_delete_texture(textr->wall);
+	mlx_delete_texture(textr->floor);
+	mlx_delete_texture(textr->coll);
+	mlx_delete_texture(textr->player);
+	mlx_delete_texture(textr->exit_s);
 }
 
-void	build_floor(t_game *game, t_image *image)
+void	build_floor(t_game *game, t_image *img)
 {
 	int	y;
 	int	x;
@@ -45,25 +45,24 @@ void	build_floor(t_game *game, t_image *image)
 	y = 0;
 	x = 0;
 	{
-		while(game->map[y])
+		while (game->map[y])
 		{
 			x = 0;
-			while(game->map[y][x])
+			while (game->map[y][x])
 			{
-				mlx_image_to_window(game->mlx_ptr, image->floor, x * 32, y * 32);
+				mlx_image_to_window(game->mlx, img->floor, x * 32, y * 32);
 				if (game->map[y][x] == '1')
-					mlx_image_to_window(game->mlx_ptr, image->wall, x * 32, y * 32);
+					mlx_image_to_window(game->mlx, img->wall, x * 32, y * 32);
 				if (game->map[y][x] == 'E')
-					mlx_image_to_window(game->mlx_ptr, image->exit_shut, x * 32, y * 32);
+					mlx_image_to_window(game->mlx, img->exit_s, x * 32, y * 32);
 				x++;
 			}
 			y++;
 		}
 	}
-	
 }
 
-void	build_map(t_game *game, t_image *image)
+void	build_map(t_game *game, t_image *img)
 {
 	int	y;
 	int	x;
@@ -71,29 +70,28 @@ void	build_map(t_game *game, t_image *image)
 	y = 0;
 	x = 0;
 	{
-		build_floor(game, image);
-		while(game->map[y])
+		build_floor(game, img);
+		while (game->map[y])
 		{
 			x = 0;
-			while(game->map[y][x])
+			while (game->map[y][x])
 			{
 				if (game->map[y][x] == 'P')
-					mlx_image_to_window(game->mlx_ptr, image->player, x * 32, y * 32);
+					mlx_image_to_window(game->mlx, img->player, x * 32, y * 32);
 				if (game->map[y][x] == 'C')
-					mlx_image_to_window(game->mlx_ptr, image->collectible, x * 32, y * 32);
+					mlx_image_to_window(game->mlx, img->coll, x * 32, y * 32);
 				x++;
 			}
 			y++;
 		}
 	}
-
 }
 
 void	delete_images(t_game *game)
 {
-	mlx_delete_image(game->mlx_ptr, game->image->wall);
-	mlx_delete_image(game->mlx_ptr, game->image->floor);
-	mlx_delete_image(game->mlx_ptr, game->image->collectible);
-	mlx_delete_image(game->mlx_ptr, game->image->player);
-	mlx_delete_image(game->mlx_ptr, game->image->exit_shut);
+	mlx_delete_image(game->mlx, game->img->wall);
+	mlx_delete_image(game->mlx, game->img->floor);
+	mlx_delete_image(game->mlx, game->img->coll);
+	mlx_delete_image(game->mlx, game->img->player);
+	mlx_delete_image(game->mlx, game->img->exit_s);
 }
