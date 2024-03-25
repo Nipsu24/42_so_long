@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/22 12:04:39 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/25 13:51:32 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,24 @@ int	free_arr(char **av)
 int	error_empty_map(void)
 {
 	ft_printf("Error.\nMap is empty :(\n");
+	return (0);
+}
+
+int	free_arr_size(char **av)
+{
+	int	j;
+
+	j = 0;
+	if (av[j] == NULL || av == NULL)
+		return (-1);
+	while (av[j])
+	{
+		free(av[j]);
+		av[j] = NULL;
+		j++;
+	}
+	free(av);
+	av = NULL;
+	ft_printf("Error.\nMap is too big :(\n");
 	return (0);
 }

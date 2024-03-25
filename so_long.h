@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/22 15:00:45 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:43:24 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_game
 	char				**map;
 	int					map_width;
 	int					map_height;
+	struct s_position	*player_pos;
+	int					count;
 }	t_game;
 
 char	*ft_read_map(int fd);
@@ -92,5 +94,10 @@ void	get_images(t_game *game, t_texture *texture);
 void	build_floor(t_game *game, t_image *image);
 void	build_map(t_game *game, t_image *image);
 void	delete_images(t_game *game);
+void	my_key_hook(mlx_key_data_t keydata, void *param);
+int		resize_image(t_game *game);
+int		free_arr_size(char **av);
+int		correct_size(char **map);
+void	cur_p_location(t_game *game);
 
 #endif

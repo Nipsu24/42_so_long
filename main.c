@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/03/22 15:01:18 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:56:25 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	map_is_ok(char *map)
 		return (-1);
 	if (!is_rectangle(map_2d))
 		return (free_arr_rectangle(map_2d));
+	if (!correct_size(map_2d))
+		return (free_arr_size(map_2d));
 	if (!borders_top_down(map_2d))
 		return (free_arr_border(map_2d));
 	if (!borders_left_right(map_2d))
@@ -55,21 +57,95 @@ int	map_is_ok(char *map)
 	return (free_arr(map_2d));
 }
 
+/*Determines size of map*/
 void	size_map(t_game *game, char **map)
 {
 	game->map_height = ft_array_height(map);
 	game->map_width = ft_array_width(map);
 }
 
+/*Determines current position of player*/
+void	cur_p_location(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->player_pos->x = j;
+				game->player_pos->y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 int	init_game(t_game *game)
 {
-	game->mlx = mlx_init(game->map_width, game->map_height, "so_long", false);
+	game->mlx = mlx_init(game->map_width * 64, game->map_height * 64, "so_long", false);
 	if (!(game->mlx))
 		error_open_file();
 	get_textures(game);
 	get_images(game, game->textr);
 	build_map(game, game->img);
+	mlx_key_hook(game->mlx, my_key_hook, game);
 	return (1);
+}
+
+void	my_key_hook(mlx_key_data_t keydata, void *param)
+{
+	t_game *game;
+
+	game = param;
+	if (keydata.action == MLX_PRESS)
+	{
+		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+		{
+			if ((game->map[game->img->player->instances->y / 64 - 1][game->img->player->instances->x / 64] != '1'))
+			{
+				game->img->player->instances->y -= 64;
+				game->count++;
+				ft_printf("moves: %d\n", game->count);
+			}
+		}
+		if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+		{
+			if ((game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64 - 1] != '1'))
+			{
+				game->img->player->instances->x -= 64;
+				game->count++;
+				ft_printf("moves: %d\n", game->count);
+			}
+		}
+		if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+		{
+			if ((game->map[game->img->player->instances->y / 64 + 1][game->img->player->instances->x / 64] != '1'))
+			{
+				game->img->player->instances->y += 64;
+				game->count++;
+				ft_printf("moves: %d\n", game->count);
+			}
+		}
+		if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+		{
+			if ((game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64 + 1] != '1'))
+			{
+				game->img->player->instances->x += 64;
+				game->count++;
+				ft_printf("moves: %d\n", game->count);
+			}
+		}
+	}
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
+		mlx_close_window(game->mlx);
 }
 
 int	main(int ac, char *av[])

@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/21 12:33:08 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/03/25 14:02:34 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,13 @@ int	p_e_c_count_ok(char *map)
 		return (0);
 	else
 		return (1);
+}
+
+int	correct_size(char **map)
+{
+	if (ft_array_height(map) > 20)
+		return (0);
+	if (ft_array_width(map) > 40)
+		return (0);
+	return (1);
 }
