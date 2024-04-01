@@ -61,6 +61,7 @@ typedef struct s_game
 	int					map_height;
 	struct s_position	*player_pos;
 	int					count;
+	int					c_count;
 }	t_game;
 
 char	*ft_read_map(int fd);
@@ -99,5 +100,7 @@ int		resize_image(t_game *game);
 int		free_arr_size(char **av);
 int		correct_size(char **map);
 void	cur_p_location(t_game *game);
+int		c_count(t_game *game);
+void	collect_all(t_game *game);
 
 #endif

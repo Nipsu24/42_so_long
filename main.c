@@ -72,6 +72,8 @@ void	cur_p_location(t_game *game)
 
 	i = 0;
 	j = 0;
+	game->player_pos->x = 0;
+	game->player_pos->y = 0;
 	while (game->map[i])
 	{
 		j = 0;
@@ -102,51 +104,135 @@ int	init_game(t_game *game)
 
 void	my_key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_game *game;
+	static t_game	*game;
+	// int	i;
 
+	// i = 0;
 	game = param;
+	// game->player_pos = malloc(sizeof(t_pos));
+	// if (!game->player_pos)
+	// 	return ;
+	// while (game->map[i])
+	// {
+	// 	ft_printf("%s\n", game->map[i]);
+	// 	i++;
+	// }
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		{
-			if ((game->map[game->img->player->instances->y / 64 - 1][game->img->player->instances->x / 64] != '1'))
+			// ft_printf("before y %d\n", game->player_pos->y);
+			// ft_printf("before x %d\n", game->player_pos->x);
+			//cur_p_location(game);
+			// ft_printf("before y %d\n", game->img->player->instances->y);
+			// ft_printf("before x %d\n", game->img->player->instances->x);
+			if ((game->map[game->img->player->instances->y / 64 - 1]
+				[game->img->player->instances->x / 64] != '1'))
+			//if (game->map[game->player_pos->y - 1][game->player_pos->x] != '1')
 			{
 				game->img->player->instances->y -= 64;
-				game->count++;
 				ft_printf("moves: %d\n", game->count);
+				// ft_printf("after y %d\n", game->player_pos->y);
+				// ft_printf("after x %d\n", game->player_pos->x);
+				// ft_printf("after y %d\n", game->img->player->instances->y);
+				// ft_printf("after x %d\n", game->img->player->instances->x);
 			}
+			// if (game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64] == 'C')
+			// {
+			// 	game->map[game->img->coll->instances->y][game->img->player->instances->enabled] = false;
+			// 	//game->img->coll->instances->enabled = false;
+			// 	game->c_count++;
+			// }
 		}
 		if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 		{
-			if ((game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64 - 1] != '1'))
+			// cur_p_location(game);
+			if ((game->map[game->img->player->instances->y / 64]
+				[game->img->player->instances->x / 64 - 1] != '1'))
+			// if (game->map[game->player_pos->y][game->player_pos->x - 1] != '1')
 			{
 				game->img->player->instances->x -= 64;
-				game->count++;
 				ft_printf("moves: %d\n", game->count);
 			}
 		}
 		if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 		{
-			if ((game->map[game->img->player->instances->y / 64 + 1][game->img->player->instances->x / 64] != '1'))
+			// cur_p_location(game);
+			if ((game->map[game->img->player->instances->y / 64 + 1]
+				[game->img->player->instances->x / 64] != '1'))
+			// if (game->map[game->player_pos->y + 1][game->player_pos->x] != '1')
 			{
 				game->img->player->instances->y += 64;
-				game->count++;
 				ft_printf("moves: %d\n", game->count);
 			}
 		}
 		if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		{
-			if ((game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64 + 1] != '1'))
+			// cur_p_location(game);
+			if ((game->map[game->img->player->instances->y / 64]
+				[game->img->player->instances->x / 64 + 1] != '1'))
+			// if (game->map[game->player_pos->y][game->player_pos->x + 1] != '1')
 			{
 				game->img->player->instances->x += 64;
-				game->count++;
 				ft_printf("moves: %d\n", game->count);
 			}
 		}
+		collect_all(game);
 	}
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
 		mlx_close_window(game->mlx);
+	// free(game->player_pos);
+	// game->player_pos = NULL;
 }
+
+void	collect_all(t_game *game)
+{
+	int	total_c;
+	int	i;
+
+	total_c = c_count(game);
+	i = 0;
+	//while (total_c > i)
+	//{
+		if (game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64] ==
+			game->map[game->img->coll->instances[i].y / 64][game->img->coll->instances[i].x / 64] &&
+			game->img->coll->instances[i].enabled == true) 
+				{
+					game->img->coll->instances[i].enabled = false;
+					i++;
+				}
+		if (i == total_c)
+			game->img->exit_s->enabled = false;
+		if (game->map[game->img->player->instances->y / 64][game->img->player->instances->x / 64] ==
+			game->map[game->img->exit_s->instances->y / 64][game->img->exit_s->instances->x / 64])
+				mlx_close_window(game->mlx);
+	//}
+}
+
+
+int	c_count(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	game->c_count = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'C')
+				game->c_count++;
+			j++;
+		}
+		i++;
+	}
+	return(game->c_count);
+}
+
+
 
 int	main(int ac, char *av[])
 {
