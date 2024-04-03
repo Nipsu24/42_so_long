@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/25 16:43:24 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:04:42 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
-typedef struct s_position
-{
-	int	x;
-	int	y;
-}	t_pos;
 
 typedef struct s_texture
 {
@@ -59,9 +53,11 @@ typedef struct s_game
 	char				**map;
 	int					map_width;
 	int					map_height;
-	struct s_position	*player_pos;
 	int					count;
 	int					c_count;
+	int					c_found;
+	int					x_pos;
+	int					y_pos;
 }	t_game;
 
 char	*ft_read_map(int fd);
@@ -102,5 +98,9 @@ int		correct_size(char **map);
 void	cur_p_location(t_game *game);
 int		c_count(t_game *game);
 void	collect_all(t_game *game);
+void	move_up(t_game *game);
+void	move_left(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
 
 #endif

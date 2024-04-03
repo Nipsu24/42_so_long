@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/03/22 14:32:45 by mmeier           ###   ########.fr        #
+#    Updated: 2024/04/03 17:19:05 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,15 @@ LIBMLX = ./mlx
 HEADERS = -I ./include -I $(LIBMLX)/include
 LIBS = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-FILES = error_check.c \
+FILES = error_check_a.c \
+		error_check_b.c \
 		utils.c \
 		error_messages_a.c \
 		error_messages_b.c \
 		valid_path.c \
 		images.c \
+		moves.c \
+		size_pos_collect.c \
 		main.c \
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
