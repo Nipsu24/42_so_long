@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/25 15:00:18 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 16:19:33 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	valid_path(char **map_2d)
 		while (map_2d[i][j])
 		{
 			if (map_2d[i][j] == 'E' || map_2d[i][j] == 'C')
-				return (free_arr_valid_path(map_2d));
+				return (0);
 			j++;
 		}
 		i++;

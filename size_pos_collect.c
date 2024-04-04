@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:13:07 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 12:33:11 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 17:39:51 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	cur_p_location(t_game *game)
 	}
 }
 
+/*Compares P position with C position by looping through all C instances.
+  If same location is detected, C images gets hidden. In case all Cs are found
+  open exit gets enabled by disabling shut exit.*/
 void	collect_all(t_game *game)
 {
 	int	i;
@@ -73,6 +76,7 @@ void	collect_all(t_game *game)
 		mlx_close_window(game->mlx);
 }
 
+/*Counts and returns all collectibles on map*/
 int	c_count(t_game *game)
 {
 	int	i;

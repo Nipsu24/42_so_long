@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 14:18:59 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 17:36:48 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,13 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
-# include <stdbool.h>
 # include <unistd.h>
-# include <limits.h>
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./mlx/include/MLX42/MLX42.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-# ifndef PX
-#  define PX 64
-# endif
+# define BUFFER_SIZE 1
+# define PX 64
 
 typedef struct s_texture
 {
@@ -64,48 +57,65 @@ typedef struct s_game
 	int					y_pos;
 }	t_game;
 
-char	*ft_read_map(int fd);
+/*main*/
+int		file_format(char *str);
+int		init_game(t_game *game);
+void	my_key_hook(mlx_key_data_t keydata, void *param);
+void	delete_images(t_game *game);
+
+/*free_and_close*/
 char	*ft_free(char **str);
-int		map_is_ok(char *map);
-int		p_e_c_count_ok(char *map);
-int		valid_char(char *map);
-int		is_rectangle(char *map_2d[]);
 int		ft_free_map(char **str, int *fd);
+int		ft_free_empty(char **str, int *fd);
+void	free_and_close(char **str, int *fd);
+
+/*error_check*/
+int		map_is_ok(char *map);
+int		is_rectangle(char *map_2d[]);
+int		correct_size(char **map);
 int		borders_top_down(char *map_2d[]);
 int		borders_left_right(char *map_2d[]);
-int		ft_array_height(char **array);
-int		free_arr_border(char **av);
+int		p_e_c_count_ok(char *map);
+int		valid_char(char *map);
+
+/*valid_path*/
+int		valid_path(char **map_2d);
+void	player_pos(char **map, int *x, int *y);
+void	fill_map(char ***map, int x, int y);
+
+/*error_messages*/
 int		free_arr_rectangle(char	**av);
+int		free_arr_border(char **av);
 int		free_arr_char(char **av);
 int		free_arr_c_count(char **av);
-int		valid_path(char **map_2d);
-int		file_format(char *str);
+int		free_arr_valid_path(char **av);
 int		wrong_format_error(void);
 int		error_open_file(void);
 int		free_arr(char **av);
-void	player_pos(char **map, int *x, int *y);
-void	fill_map(char ***map, int x, int y);
-int		free_arr_valid_path(char **av);
-int		error_empty_map(void);
-int		ft_array_width(char **array);
-void	size_map(t_game *game, char **map);
-int		init_game(t_game *game);
+int		free_arr_size(char **av);
+
+/*images*/
 void	get_textures(t_game *game);
 void	get_images(t_game *game, t_texture *texture);
+int		resize_image(t_game *game);
 void	build_floor(t_game *game, t_image *image);
 void	build_map(t_game *game, t_image *image);
-void	delete_images(t_game *game);
-void	my_key_hook(mlx_key_data_t keydata, void *param);
-int		resize_image(t_game *game);
-int		free_arr_size(char **av);
-int		correct_size(char **map);
+
+/*size_pos_collect*/
+void	size_map(t_game *game, char **map);
 void	cur_p_location(t_game *game);
-int		c_count(t_game *game);
 void	collect_all(t_game *game);
+int		c_count(t_game *game);
+
+/*moves*/
 void	move_up(t_game *game);
 void	move_left(t_game *game);
 void	move_down(t_game *game);
 void	move_right(t_game *game);
-void	free_and_close(char **str, int *fd);
+
+/*utils*/
+char	*ft_read_map(int fd);
+int		ft_array_height(char **array);
+int		ft_array_width(char **array);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/25 13:51:32 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 16:56:03 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	wrong_format_error(void)
 {
 	ft_printf("Error.\nMap is in wrong format :(\n");
-	return (0);
+	return (-1);
 }
 
 int	error_open_file(void)
 {
 	ft_printf("Error.\nFile could not be opened :(\n");
-	return (1);
+	return (-1);
 }
 
 int	free_arr(char **av)
@@ -40,12 +40,6 @@ int	free_arr(char **av)
 	free(av);
 	av = NULL;
 	return (1);
-}
-
-int	error_empty_map(void)
-{
-	ft_printf("Error.\nMap is empty :(\n");
-	return (0);
 }
 
 int	free_arr_size(char **av)
