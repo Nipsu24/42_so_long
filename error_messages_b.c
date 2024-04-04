@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 17:55:39 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 18:02:41 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	free_arr_size(char **av)
 	ft_printf("Error.\nMap is too big :(\n");
 	return (0);
 }
+
 int	wrong_ac_count(void)
 {
 	ft_printf("Error.\nInvalid amount of arguments given to program :(\n");

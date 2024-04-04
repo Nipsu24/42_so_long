@@ -6,16 +6,16 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:29:48 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 17:46:06 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 18:03:58 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /*Moving functions adjust location of player instance incase no "1" is present
-  by using addition or substraction with pixel size (PX) (defined in header file).
-  y_pos & x_pos parallely tracked for easier reading purpose for later use in function
-  void collect_all (size_pos_collect.c)*/
+  by using addition or substraction with pixel size (PX) (defined in header 
+  file).y_pos & x_pos parallely tracked for easier reading purpose for later 
+  use in function void collect_all (size_pos_collect.c)*/
 void	move_up(t_game *game)
 {
 	if (game->map[game->img->player->instances->y / PX - 1]

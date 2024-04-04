@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:33:33 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 16:48:01 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 18:03:08 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_free_empty(char **str, int *fd)
 	ft_printf("Error.\nMap is empty :(\n");
 	return (-1);
 }
+
 void	free_and_close(char **str, int *fd)
 {
 	if (*str)

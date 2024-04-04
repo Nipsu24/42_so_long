@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:10:52 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 17:18:56 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 18:02:20 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	correct_size(char **map)
 		return (0);
 	return (1);
 }
+
 /*Checks if there are any other chars from '1s' in 1st & last row.
   'Last - 1', in order to not include array with 'NULL-terminator'*/
 int	borders_top_down(char *map_2d[])
