@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/04 17:05:48 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 17:55:34 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char *av[])
 	static t_game	game;
 
 	if (ac != 2)
-		return (0);
+		return (wrong_ac_count());
 	if (!file_format(av[1]))
 		return (wrong_format_error());
 	fd = open(av[1], O_RDONLY);
