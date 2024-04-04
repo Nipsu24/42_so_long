@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:47:22 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/25 14:02:36 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 14:34:21 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,6 @@ char	*ft_read_map(int fd)
 			return (ft_free(&str));
 	}
 	return (str);
-}
-
-char	*ft_free(char **str)
-{
-	if (*str)
-	{
-		free(*str);
-		*str = NULL;
-	}
-	return (NULL);
-}
-
-int	ft_free_map(void **str)
-{
-	if (*str)
-	{
-		free(*str);
-		*str = NULL;
-	}
-	return (0);
 }
 
 int	ft_array_height(char **array)

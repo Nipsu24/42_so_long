@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/03 17:04:42 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 14:18:59 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
+# endif
+
+# ifndef PX
+#  define PX 64
 # endif
 
 typedef struct s_texture
@@ -66,7 +70,7 @@ int		map_is_ok(char *map);
 int		p_e_c_count_ok(char *map);
 int		valid_char(char *map);
 int		is_rectangle(char *map_2d[]);
-int		ft_free_map(void **str);
+int		ft_free_map(char **str, int *fd);
 int		borders_top_down(char *map_2d[]);
 int		borders_left_right(char *map_2d[]);
 int		ft_array_height(char **array);
@@ -102,5 +106,6 @@ void	move_up(t_game *game);
 void	move_left(t_game *game);
 void	move_down(t_game *game);
 void	move_right(t_game *game);
+void	free_and_close(char **str, int *fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/03 16:25:30 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:32:56 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ int	resize_image(t_game *game)
 {
 	if (!(mlx_resize_image(game->img->coll, 48, 48)))
 		return (0);
-	if (!(mlx_resize_image(game->img->wall, 64, 64)))
+	if (!(mlx_resize_image(game->img->wall, PX, PX)))
 		return (0);
-	if (!(mlx_resize_image(game->img->floor, 64, 64)))
+	if (!(mlx_resize_image(game->img->floor, PX, PX)))
 		return (0);
-	if (!(mlx_resize_image(game->img->player, 64, 64)))
+	if (!(mlx_resize_image(game->img->player, PX, PX)))
 		return (0);
-	if (!(mlx_resize_image(game->img->exit_s, 64, 64)))
+	if (!(mlx_resize_image(game->img->exit_s, PX, PX)))
 		return (0);
-	if (!(mlx_resize_image(game->img->exit_o, 64, 64)))
+	if (!(mlx_resize_image(game->img->exit_o, PX, PX)))
 		return (0);
 	return (1);
 }
@@ -72,13 +72,13 @@ void	build_floor(t_game *game, t_image *img)
 			x = 0;
 			while (game->map[y][x])
 			{
-				mlx_image_to_window(game->mlx, img->floor, x * 64, y * 64);
+				mlx_image_to_window(game->mlx, img->floor, x * PX, y * PX);
 				if (game->map[y][x] == '1')
-					mlx_image_to_window(game->mlx, img->wall, x * 64, y * 64);
+					mlx_image_to_window(game->mlx, img->wall, x * PX, y * PX);
 				if (game->map[y][x] == 'E')
 				{
-					mlx_image_to_window(game->mlx, img->exit_o, x * 64, y * 64);
-					mlx_image_to_window(game->mlx, img->exit_s, x * 64, y * 64);
+					mlx_image_to_window(game->mlx, img->exit_o, x * PX, y * PX);
+					mlx_image_to_window(game->mlx, img->exit_s, x * PX, y * PX);
 				}
 				x++;
 			}
@@ -102,21 +102,12 @@ void	build_map(t_game *game, t_image *img)
 			while (game->map[y][x])
 			{
 				if (game->map[y][x] == 'P')
-					mlx_image_to_window(game->mlx, img->player, x * 64, y * 64);
+					mlx_image_to_window(game->mlx, img->player, x * PX, y * PX);
 				if (game->map[y][x] == 'C')
-					mlx_image_to_window(game->mlx, img->coll, x * 64, y * 64);
+					mlx_image_to_window(game->mlx, img->coll, x * PX, y * PX);
 				x++;
 			}
 			y++;
 		}
 	}
-}
-
-void	delete_images(t_game *game)
-{
-	mlx_delete_image(game->mlx, game->img->wall);
-	mlx_delete_image(game->mlx, game->img->floor);
-	mlx_delete_image(game->mlx, game->img->coll);
-	mlx_delete_image(game->mlx, game->img->player);
-	mlx_delete_image(game->mlx, game->img->exit_s);
 }

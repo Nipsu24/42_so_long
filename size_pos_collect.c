@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:13:07 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/03 17:26:09 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:33:11 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	collect_all(t_game *game)
 	c_count(game);
 	while (i < game->c_count)
 	{
-		if (game->y_pos == game->img->coll->instances[i].y / 64
-			&& game->x_pos == game->img->coll->instances[i].x / 64)
+		if (game->y_pos == game->img->coll->instances[i].y / PX
+			&& game->x_pos == game->img->coll->instances[i].x / PX)
 		{
 			if (game->img->coll->instances[i].enabled == true)
 			{
@@ -67,8 +67,8 @@ void	collect_all(t_game *game)
 	}
 	if (game->c_found == game->c_count)
 		game->img->exit_s->enabled = false;
-	if (game->map[game->img->player->instances->y / 64]
-		[game->img->player->instances->x / 64] == 'E'
+	if (game->map[game->img->player->instances->y / PX]
+		[game->img->player->instances->x / PX] == 'E'
 		&& game->img->exit_s->enabled == false)
 		mlx_close_window(game->mlx);
 }
