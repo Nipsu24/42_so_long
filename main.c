@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/05 15:02:01 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/05 16:09:59 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ int	file_format(char *str)
 		return (1);
 }
 
+/*Initialises MLX42 instance (window), textures/images and key hook*/
 int	init_game(t_game *game)
 {
 	size_map(game, game->map);
 	game->mlx = mlx_init(game->map_width * PX,
 			game->map_height * PX, "so_long", false);
 	if (!(game->mlx))
-		error_open_file();
+		return (0);
 	get_textures(game);
 	get_images(game, game->textr);
 	build_map(game, game->img);
@@ -49,6 +50,9 @@ int	init_game(t_game *game)
 	return (1);
 }
 
+/*Detects key press and passes information to respective move functions
+  where it is checked whether moves can be conducted. Afterwards check
+  if player is on collectible is conducted.*/
 void	my_key_hook(mlx_key_data_t keydata, void *param)
 {
 	static t_game	*game;

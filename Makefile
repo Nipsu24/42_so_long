@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/04/05 15:04:00 by mmeier           ###   ########.fr        #
+#    Updated: 2024/04/05 16:07:59 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ libmlx:
 %.o: %.c
 	@$(CC) $(FLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
-$(NAME): $(OBJ_FILES) $(LIBFT)
+$(NAME): $(OBJ_FILES) $(LIBFT) $(BUILD_LIBMLX)
 	make -C $(LIBFT) > /dev/null
 	$(CC) $(FLAGS) $(LIBS) $(LINK_DIR) $(HEADERS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft
 	@echo "\033[32m$(NAME) has been built successfully!\033[0m"
@@ -69,11 +69,15 @@ $(OBJ_DIR):
 clean:
 	make clean -C $(LIBFT)
 	rm -rf $(OBJ_DIR)
+	
 
 fclean: clean
 	make fclean -C $(LIBFT)
 	rm -f $(NAME)
+	rm -rf $(LIBMLX)/build
 
-re: fclean all
+re: 
+	make fclean 
+	make all
 
 .PHONY: all clean fclean re libmlx
