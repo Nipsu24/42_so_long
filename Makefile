@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/04/05 14:19:29 by mmeier           ###   ########.fr        #
+#    Updated: 2024/04/05 14:49:50 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,6 @@ $(OBJ_DIR):
 clean:
 	make clean -C $(LIBFT)
 	rm -rf $(OBJ_DIR)
-	# rm -rf $(LIBMLX)/build
 
 fclean: clean
 	make fclean -C $(LIBFT)
