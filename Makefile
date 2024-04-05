@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/04/05 14:51:32 by mmeier           ###   ########.fr        #
+#    Updated: 2024/04/05 15:04:00 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,4 +77,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re libmlx
-
