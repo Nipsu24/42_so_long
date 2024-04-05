@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/04 17:55:34 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/05 14:13:19 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_game(t_game *game)
 	get_images(game, game->textr);
 	build_map(game, game->img);
 	cur_p_location(game);
-	mlx_key_hook(game->mlx, &my_key_hook, game);
+	mlx_key_hook(game->mlx, my_key_hook, game);
 	mlx_loop(game->mlx);
 	delete_images(game);
 	mlx_terminate(game->mlx);
