@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/08 10:10:54 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:28:12 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include "./mlx/include/MLX42/MLX42.h"
