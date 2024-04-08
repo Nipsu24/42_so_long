@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/08 09:40:18 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/08 10:12:06 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ int	init_game(t_game *game)
 			game->map_height * PX, "so_long", false);
 	if (!(game->mlx))
 		return (0);
-	get_textures(game);
-	get_images(game, game->textr);
+	if (!get_textures(game))
+		return (0);
+	if (!get_images(game, game->textr))
+		return (0);
 	build_map(game, game->img);
 	cur_p_location(game);
 	mlx_key_hook(game->mlx, my_key_hook, game);

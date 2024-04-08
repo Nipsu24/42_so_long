@@ -6,26 +6,31 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/05 10:10:03 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/08 10:11:19 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_textures(t_game *game)
+int	get_textures(t_game *game)
 {
 	game->textr = ft_calloc(1, sizeof(t_texture));
+	if (!game->textr)
+		return (0);
 	game->textr->wall = mlx_load_png("./assets/png/Wall.png");
 	game->textr->floor = mlx_load_png("./assets/png/Gras.png");
 	game->textr->coll = mlx_load_png("./assets/png/collectible.png");
 	game->textr->player = mlx_load_png("./assets/png/Lizard.png");
 	game->textr->exit_s = mlx_load_png("./assets/png/Goal_closed.png");
 	game->textr->exit_o = mlx_load_png("./assets/png/Goal.png");
+	return (1);
 }
 
-void	get_images(t_game *game, t_texture *textr)
+int	get_images(t_game *game, t_texture *textr)
 {
 	game->img = ft_calloc(1, sizeof(t_image));
+	if (!game->img)
+		return (0);
 	game->img->wall = mlx_texture_to_image(game->mlx, textr->wall);
 	game->img->floor = mlx_texture_to_image(game->mlx, textr->floor);
 	game->img->coll = mlx_texture_to_image(game->mlx, textr->coll);
@@ -39,7 +44,8 @@ void	get_images(t_game *game, t_texture *textr)
 	mlx_delete_texture(textr->exit_s);
 	mlx_delete_texture(textr->exit_o);
 	if (!(resize_image(game)))
-		return ;
+		return (0);
+	return (1);
 }
 
 int	resize_image(t_game *game)

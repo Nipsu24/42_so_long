@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 17:55:38 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/08 10:10:54 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int		free_arr_size(char **av);
 int		wrong_ac_count(void);
 
 /*images*/
-void	get_textures(t_game *game);
-void	get_images(t_game *game, t_texture *texture);
+int		get_textures(t_game *game);
+int		get_images(t_game *game, t_texture *texture);
 int		resize_image(t_game *game);
 void	build_floor(t_game *game, t_image *image);
 void	build_map(t_game *game, t_image *image);
