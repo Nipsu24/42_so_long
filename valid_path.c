@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/10 14:50:11 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:07:55 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	fill_map(char ***map, int x, int y)
 	return ;
 }
 
-/*Deletes texture in case texture creation fails*/
+/*Deletes texture in case texture creation fails. 
+  Otherwise texture deletion handled in get_images*/
 int	delete_textures(t_game *game)
 {
 	if (game->textr)

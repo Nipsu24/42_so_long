@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/10 13:59:13 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:08:52 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	my_key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 }
 
+/*Deletes images for successful path, otherwise
+  see function: delete_error_images*/
 void	delete_images(t_game *game)
 {
 	mlx_delete_image(game->mlx, game->img->wall);
