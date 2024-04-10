@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 16:19:33 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:50:11 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,51 @@ void	fill_map(char ***map, int x, int y)
 	fill_map(map, x, y + 1);
 	fill_map(map, x, y - 1);
 	return ;
+}
+
+/*Deletes texture in case texture creation fails*/
+int	delete_textures(t_game *game)
+{
+	if (game->textr)
+	{
+		if (game->textr->wall)
+			mlx_delete_texture(game->textr->wall);
+		if (game->textr->floor)
+			mlx_delete_texture(game->textr->floor);
+		if (game->textr->coll)
+			mlx_delete_texture(game->textr->coll);
+		if (game->textr->player)
+			mlx_delete_texture(game->textr->player);
+		if (game->textr->exit_s)
+			mlx_delete_texture(game->textr->exit_s);
+		if (game->textr->exit_o)
+			mlx_delete_texture(game->textr->exit_o);
+		free(game->textr);
+		game->textr = NULL;
+	}
+	return (0);
+}
+
+/*Deletes images in case image creation fails (incl. texture deletion)*/
+int	delete_error_images(t_game *game)
+{
+	delete_textures(game);
+	if (game->img)
+	{
+		if (game->img->wall)
+			mlx_delete_image(game->mlx, game->img->wall);
+		if (game->img->floor)
+			mlx_delete_image(game->mlx, game->img->floor);
+		if (game->img->coll)
+			mlx_delete_image(game->mlx, game->img->coll);
+		if (game->img->player)
+			mlx_delete_image(game->mlx, game->img->player);
+		if (game->img->exit_s)
+			mlx_delete_image(game->mlx, game->img->exit_s);
+		if (game->img->exit_o)
+			mlx_delete_image(game->mlx, game->img->exit_o);
+		free(game->img);
+		game->img = NULL;
+	}
+	return (0);
 }

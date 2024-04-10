@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:33:33 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/05 13:08:25 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:10:05 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,21 @@ void	free_and_close(char **str, int *fd)
 		*str = NULL;
 		close(*fd);
 	}
+}
+
+int	free_all(t_game *game, int n)
+{
+	if (n == 0)
+	{
+		delete_error_images(game);
+		mlx_terminate(game->mlx);
+		if (game->map)
+			free_arr(game->map);
+	}
+	if (n == 1)
+	{
+		if (game->map)
+			free_arr(game->map);
+	}
+	return (0);
 }

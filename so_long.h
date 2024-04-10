@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/08 11:28:12 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:47:14 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*ft_free(char **str);
 int		ft_free_map(char **str, int *fd);
 int		ft_free_empty(char **str, int *fd);
 void	free_and_close(char **str, int *fd);
+int		free_all(t_game *game, int n);
 
 /*error_check*/
 int		map_is_ok(char *map);
@@ -77,10 +78,12 @@ int		borders_left_right(char *map_2d[]);
 int		p_e_c_count_ok(char *map);
 int		valid_char(char *map);
 
-/*valid_path*/
+/*valid_path / delete images & textures*/
 int		valid_path(char **map_2d);
 void	player_pos(char **map, int *x, int *y);
 void	fill_map(char ***map, int x, int y);
+int		delete_textures(t_game *game);
+int		delete_error_images(t_game *game);
 
 /*error_messages*/
 int		free_arr_rectangle(char	**av);

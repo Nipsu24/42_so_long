@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/08 10:24:14 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 13:59:13 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	init_game(t_game *game)
 	if (!(game->mlx))
 		return (0);
 	if (!get_textures(game))
-		return (0);
+		return (delete_textures(game));
 	if (!get_images(game, game->textr))
-		return (0);
+		return (delete_error_images(game));
 	build_map(game, game->img);
 	cur_p_location(game);
 	mlx_key_hook(game->mlx, my_key_hook, game);
@@ -57,7 +57,7 @@ int	init_game(t_game *game)
   if player is on collectible is conducted.*/
 void	my_key_hook(mlx_key_data_t keydata, void *param)
 {
-	static t_game	*game;
+	t_game	*game;
 
 	game = param;
 	if (keydata.action == MLX_PRESS)
@@ -84,13 +84,14 @@ void	delete_images(t_game *game)
 	mlx_delete_image(game->mlx, game->img->player);
 	mlx_delete_image(game->mlx, game->img->exit_s);
 	mlx_delete_image(game->mlx, game->img->exit_o);
+	free(game->img);
 }
 
 int	main(int ac, char *av[])
 {
-	int				fd;
-	char			*map;
-	static t_game	game;
+	int		fd;
+	char	*map;
+	t_game	game;
 
 	if (ac != 2)
 		return (wrong_ac_count());
@@ -109,6 +110,6 @@ int	main(int ac, char *av[])
 		return (ft_free_map(&map, &fd));
 	free_and_close(&map, &fd);
 	if (!init_game(&game))
-		return (-1);
-	return (0);
+		return (free_all(&game, 0));
+	return (free_all(&game, 1));
 }

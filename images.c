@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/08 10:24:33 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:47:47 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,23 @@ int	get_textures(t_game *game)
 	if (!game->textr)
 		return (0);
 	game->textr->wall = mlx_load_png("./assets/png/Wall.png");
+	if (!game->textr->wall)
+		return (0);
 	game->textr->floor = mlx_load_png("./assets/png/Gras.png");
+	if (!game->textr->floor)
+		return (0);
 	game->textr->coll = mlx_load_png("./assets/png/collectible.png");
+	if (!game->textr->coll)
+		return (0);
 	game->textr->player = mlx_load_png("./assets/png/Lizard.png");
+	if (!game->textr->player)
+		return (0);
 	game->textr->exit_s = mlx_load_png("./assets/png/Goal_closed.png");
+	if (!game->textr->exit_s)
+		return (0);
 	game->textr->exit_o = mlx_load_png("./assets/png/Goal.png");
+	if (!game->textr->exit_o)
+		return (0);
 	return (1);
 }
 
@@ -43,6 +55,7 @@ int	get_images(t_game *game, t_texture *textr)
 	mlx_delete_texture(textr->player);
 	mlx_delete_texture(textr->exit_s);
 	mlx_delete_texture(textr->exit_o);
+	free(game->textr);
 	if (!(resize_image(game)))
 		return (0);
 	return (1);
