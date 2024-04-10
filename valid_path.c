@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:23:30 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/10 15:07:55 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:17:50 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	delete_textures(t_game *game)
 			mlx_delete_texture(game->textr->exit_o);
 		free(game->textr);
 		game->textr = NULL;
+		ft_printf("Error.\nLoading texture failed :( (hint: check PNG-path)\n");
 	}
 	return (0);
 }
