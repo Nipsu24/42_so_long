@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/03/14 11:13:35 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/17 15:22:51 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
-int	    ft_putchar_count(const char c, int *cmp);
-int	    ft_putnbr_count(int n, int *cmp);
-int	    ft_putstr_count(char *s, int *cmp);
-int	    ft_printf(const char *str, ...);
-int	    ft_unsigned_int_count(unsigned int n, int *cmp);
-int	    ft_hexconvert_upper(unsigned int n, int *cmp);
-int	    ft_hexconvert_lower(unsigned long long int n, int *cmp);
-int	    ft_putptr(void *s, int *cmp);
+int		ft_putchar_count(const char c, int *cmp);
+int		ft_putnbr_count(int n, int *cmp);
+int		ft_putstr_count(char *s, int *cmp);
+int		ft_printf(const char *str, ...);
+int		ft_unsigned_int_count(unsigned int n, int *cmp);
+int		ft_hexconvert_upper(unsigned int n, int *cmp);
+int		ft_hexconvert_lower(unsigned long long int n, int *cmp);
+int		ft_putptr(void *s, int *cmp);
 #endif
