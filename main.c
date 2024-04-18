@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/10 15:08:52 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/17 15:30:31 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ int	file_format(char *str)
 /*Initialises MLX42 instance (window), textures/images and key hook*/
 int	init_game(t_game *game)
 {
+	game->count = 0;
 	size_map(game, game->map);
 	game->mlx = mlx_init(game->map_width * PX,
 			game->map_height * PX, "so_long", false);
+	if (PX > 100)
+		return (0);
 	if (!(game->mlx))
 		return (0);
 	if (!get_textures(game))

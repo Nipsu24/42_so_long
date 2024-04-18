@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/10 14:47:47 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/12 10:52:27 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	get_images(t_game *game, t_texture *textr)
 
 int	resize_image(t_game *game)
 {
-	if (!(mlx_resize_image(game->img->coll, 48, 48)))
+	if (!(mlx_resize_image(game->img->coll, PX * 0.75, PX * 0.75)))
 		return (0);
 	if (!(mlx_resize_image(game->img->wall, PX, PX)))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:19 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 18:02:41 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/18 10:59:47 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	wrong_format_error(void)
 {
-	ft_printf("Error.\nMap is in wrong format :(\n");
+	ft_printf("Error\nMap is in wrong format :(\n");
 	return (-1);
 }
 
 int	error_open_file(void)
 {
-	ft_printf("Error.\nFile could not be opened :(\n");
+	ft_printf("Error\nFile could not be opened :(\n");
 	return (-1);
 }
 
@@ -57,12 +57,12 @@ int	free_arr_size(char **av)
 	}
 	free(av);
 	av = NULL;
-	ft_printf("Error.\nMap is too big :(\n");
+	ft_printf("Error\nMap is too big :(\n");
 	return (0);
 }
 
 int	wrong_ac_count(void)
 {
-	ft_printf("Error.\nInvalid amount of arguments given to program :(\n");
+	ft_printf("Error\nInvalid amount of arguments given to program :(\n");
 	return (-1);
 }

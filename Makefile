@@ -6,7 +6,7 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/04/05 16:07:59 by mmeier           ###   ########.fr        #
+#    Updated: 2024/04/18 11:13:09 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJ_DIR = obj
 LIBFT = ./libft
 LIBMLX = ./mlx
 
-HEADERS = -I ./include -I $(LIBMLX)/include
+HEADERS = -I $(LIBMLX)/include
 LIBS = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 FILES = error_check_a.c \
@@ -60,7 +60,7 @@ $(NAME): $(OBJ_FILES) $(LIBFT) $(BUILD_LIBMLX)
 fsanitize: 
 	$(CC) -o $(NAME) $(FILES) -L$(LIBFT) $(LINK_DIR) $(LIBS) -lft -g -fsanitize=address -static-libsan 
 	
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)so_long.h | $(OBJ_DIR) 
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(OBJ_DIR):
