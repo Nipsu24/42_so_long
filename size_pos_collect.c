@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:13:07 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/04 17:39:51 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/25 10:14:30 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,14 @@ int	c_count(t_game *game)
 		i++;
 	}
 	return (game->c_count);
+}
+void	delete_texture_success(t_game *game)
+{
+	mlx_delete_texture(game->textr->wall);
+	mlx_delete_texture(game->textr->floor);
+	mlx_delete_texture(game->textr->coll);
+	mlx_delete_texture(game->textr->player);
+	mlx_delete_texture(game->textr->exit_s);
+	mlx_delete_texture(game->textr->exit_o);
+	free(game->textr);
 }

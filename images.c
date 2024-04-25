@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:30:57 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/12 10:52:27 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/25 10:10:44 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,23 @@ int	get_images(t_game *game, t_texture *textr)
 	if (!game->img)
 		return (0);
 	game->img->wall = mlx_texture_to_image(game->mlx, textr->wall);
+	if (!game->img->wall)
+		return (0);
 	game->img->floor = mlx_texture_to_image(game->mlx, textr->floor);
+	if (!game->img->floor)
+		return (0);
 	game->img->coll = mlx_texture_to_image(game->mlx, textr->coll);
+	if (!game->img->coll)
+		return (0);
 	game->img->player = mlx_texture_to_image(game->mlx, textr->player);
+	if (!game->img->player)
+		return (0);
 	game->img->exit_s = mlx_texture_to_image(game->mlx, textr->exit_s);
+	if (!game->img->exit_s)
+		return (0);
 	game->img->exit_o = mlx_texture_to_image(game->mlx, textr->exit_o);
-	mlx_delete_texture(textr->wall);
-	mlx_delete_texture(textr->floor);
-	mlx_delete_texture(textr->coll);
-	mlx_delete_texture(textr->player);
-	mlx_delete_texture(textr->exit_s);
-	mlx_delete_texture(textr->exit_o);
-	free(game->textr);
+	if (!game->img->exit_o)
+		return (0);
 	if (!(resize_image(game)))
 		return (0);
 	return (1);

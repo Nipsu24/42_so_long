@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:39:08 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/18 11:14:50 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/25 10:14:54 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	size_map(t_game *game, char **map);
 void	cur_p_location(t_game *game);
 void	collect_all(t_game *game);
 int		c_count(t_game *game);
+void	delete_texture_success(t_game *game);
 
 /*moves*/
 void	move_up(t_game *game);
