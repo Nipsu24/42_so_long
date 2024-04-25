@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:13:07 by mmeier            #+#    #+#             */
-/*   Updated: 2024/04/25 10:14:30 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/25 10:35:36 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	delete_texture_success(t_game *game)
 	mlx_delete_texture(game->textr->exit_s);
 	mlx_delete_texture(game->textr->exit_o);
 	free(game->textr);
+	game->textr = NULL;
 }

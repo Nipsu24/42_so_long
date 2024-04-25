@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/17 15:30:31 by mmeier           ###   ########.fr       */
+/*   Updated: 2024/04/25 10:35:34 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_game(t_game *game)
 		return (delete_textures(game));
 	if (!get_images(game, game->textr))
 		return (delete_error_images(game));
+	delete_texture_success(game);
 	build_map(game, game->img);
 	cur_p_location(game);
 	mlx_key_hook(game->mlx, my_key_hook, game);
@@ -90,6 +91,7 @@ void	delete_images(t_game *game)
 	mlx_delete_image(game->mlx, game->img->exit_s);
 	mlx_delete_image(game->mlx, game->img->exit_o);
 	free(game->img);
+	game->img = NULL;
 }
 
 int	main(int ac, char *av[])
