@@ -16,10 +16,14 @@
 The repository contains a program for lauchning a 2D top down game using functions from the MLX42 graphics library running on GLFW and OpenGL.
 
 ## Program
+The player is able to move in 4 directions and can pick up collectibles. Once all collectibles are picked up, the game
+can be exited via a special exit field. Collision detection is used in order to avoid that the player can go through walls.
 The executable takes a .ber file as argument which contains the map of the game. The requirements for a valid map are:
 - only one player ('P') present
 - map must be closed by walls ('1')
-- map must have floor tiles ('0')
+- map must have open spaces ('0')
+- at leat 1 collectible ('C)
+- an exit ('E')
 
 ## Requirements
 - `gcc` compiler
@@ -51,5 +55,5 @@ or
 ```
 ⬅︎⬆︎⬇︎➡︎
 ```
-All collectables need to be picked up before the exit field is functional.
+All collectibles need to be picked up before the exit field is functional.
 The game can be closed by hitting `ESC` or clicking on the `x` of the window.
