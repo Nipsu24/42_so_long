@@ -17,12 +17,13 @@ The repository contains a program for lauchning a 2D top down game using functio
 
 ## Program
 The executable takes a .ber file as argument which contains the map of the game. The requirements for a valid map are:
-- only one player (character 'P') present
-- map must be closed by walls (character '1')
+- only one player ('P') present
+- map must be closed by walls ('1')
+- map must have floor tiles ('0')
 
 ## Requirements
--`gcc` compiler
-- GLFW library
+- `gcc` compiler
+- `GLFW` library
 
 ## Instructions
 
@@ -36,7 +37,7 @@ $ make
 
 ### 2. Start the game
 
-Start the game by passing a valid .ber map file (see respective map folder) e.g.:
+Start the game by passing a valid .ber map file (see respective map folder) to the executable e.g.:
 ```
 $ ./so_long valid.ber
 ```
@@ -50,3 +51,5 @@ or
 ```
 ⬅︎⬆︎⬇︎➡︎
 ```
+All collectables need to be picked up before the exit field is functional.
+The game can be closed by hitting `ESC` or clicking on the `x` of the window.
