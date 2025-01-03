@@ -63,5 +63,5 @@ The game can be closed by hitting `ESC` or clicking on the `x` of the window.
 
 ## References
 The MLX42 library was downloaded from the following repo: (https://github.com/codam-coding-college/MLX42)  
-The player image was taken from: (https://akoro.itch.io/pixel-mons-52-monsters-size-24x24) 
+The player image was taken from: (https://akoro.itch.io/pixel-mons-52-monsters-size-24x24)  
 Images for collectibles, floor and walls were taken from: (https://game-endeavor.itch.io/mystic-woods)
