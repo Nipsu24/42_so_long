@@ -20,7 +20,7 @@ The repository contains a program for lauchning a 2D top down game using functio
 ## Program
 The player is able to move in 4 directions and can pick up collectibles. Once all collectibles are picked up, the game
 can be exited via a special exit field. Collision detection is used in order to avoid that the player can go through walls.
-A check using a flood fill algorithm ensures that the player is surrounded by walls and that no collectible or the exit are fenced.
+A check using a flood fill algorithm ensures that the player/map is surrounded by walls and that no collectible or the exit are fenced.
 The executable takes a .ber file as argument which contains the map of the game. The requirements for a valid map are:
 - only one player ('P') present
 - map must be closed by walls ('1')
@@ -63,4 +63,5 @@ The game can be closed by hitting `ESC` or clicking on the `x` of the window.
 
 ## References
 The MLX42 library was downloaded from the following repo: (https://github.com/codam-coding-college/MLX42)  
-The sprites for player, collectibles, floor and walls were taken from: (https://itch.io)
+The player image was taken from: (https://akoro.itch.io/pixel-mons-52-monsters-size-24x24) 
+Images for collectibles, floor and walls were taken from: (https://game-endeavor.itch.io/mystic-woods)
