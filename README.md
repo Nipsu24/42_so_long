@@ -20,6 +20,7 @@ The repository contains a program for lauchning a 2D top down game using functio
 ## Program
 The player is able to move in 4 directions and can pick up collectibles. Once all collectibles are picked up, the game
 can be exited via a special exit field. Collision detection is used in order to avoid that the player can go through walls.
+A check using a flood fill algorithm ensures that the player is surrounded by walls and that no collectible or the exit are fenced.
 The executable takes a .ber file as argument which contains the map of the game. The requirements for a valid map are:
 - only one player ('P') present
 - map must be closed by walls ('1')
