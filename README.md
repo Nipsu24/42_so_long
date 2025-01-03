@@ -63,4 +63,4 @@ The game can be closed by hitting `ESC` or clicking on the `x` of the window.
 
 ## References
 The MLX42 library was downloaded from the following repo: (https://github.com/codam-coding-college/MLX42)  
-The sprites for player, collectibles, floor and walls where taken from: (https://itch.io)
+The sprites for player, collectibles, floor and walls were taken from: (https://itch.io)
