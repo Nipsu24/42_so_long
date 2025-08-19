@@ -6,7 +6,7 @@
 /*   By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:54:53 by mariusmeier       #+#    #+#             */
-/*   Updated: 2024/04/25 10:35:34 by mmeier           ###   ########.fr       */
+/*   Updated: 2025/08/19 13:27:18 by mmeier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	file_format(char *str)
 int	init_game(t_game *game)
 {
 	game->count = 0;
+	game->c_found = 0;
 	size_map(game, game->map);
 	game->mlx = mlx_init(game->map_width * PX,
 			game->map_height * PX, "so_long", false);
