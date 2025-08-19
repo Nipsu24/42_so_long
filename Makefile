@@ -6,13 +6,13 @@
 #    By: mmeier <mmeier@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 11:47:56 by mmeier            #+#    #+#              #
-#    Updated: 2024/04/18 11:13:09 by mmeier           ###   ########.fr        #
+#    Updated: 2025/08/19 12:57:49 by mmeier           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
+FLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./
 OBJ_DIR = obj
@@ -46,8 +46,13 @@ endif
 
 all: $(BUILD_LIBMLX) $(NAME)
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+$(LIBMLX):
+	@if [ ! -d "$(LIBMLX)" ]; then git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); fi
+
+libmlx: $(LIBMLX)
+	@if [ ! -d $(LIBMLX)/build ]; then \
+	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4; \
+	fi
 
 %.o: %.c
 	@$(CC) $(FLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
